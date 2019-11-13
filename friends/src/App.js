@@ -11,8 +11,8 @@ function App() {
     <Router>
       <div className="App">
       <Switch>
-          <PrivateRoute path="/protected">
-            <Route exact path="/protected" component={Friends} />
+          <PrivateRoute path="/friends">
+            <Route exact path="/friends" component={Friends} />
           </PrivateRoute>
           <Route path="/login" component={Login} />
           <Route component={Login} />

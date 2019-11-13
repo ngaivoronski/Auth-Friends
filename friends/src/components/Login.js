@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 class Login extends React.Component {
     state = {
@@ -45,27 +46,35 @@ class Login extends React.Component {
         }
     }
 
+    
+
+    
+
     render() {
-        return (
-        <div>
-            <h2>{this.state.isLoggedIn ? "LOGGED IN!" : "Please login"}</h2>
-            <form onSubmit={this.login}>
-            <input
-                type="text"
-                name="username"
-                value={this.state.credentials.username}
-                onChange={this.handleChange}
-            />
-            <input
-                type="password"
-                name="password"
-                value={this.state.credentials.password}
-                onChange={this.handleChange}
-            />
-            <button>Log in</button>
-            </form>
-        </div>
-        );
+        if (sessionStorage.getItem("token")) {
+            return( <Redirect to="/friends"/> );
+        } else {
+            return (
+                <div>
+                    <h2>{this.state.isLoggedIn ? "LOGGED IN!" : "Please login"}</h2>
+                    <form onSubmit={this.login}>
+                    <input
+                        type="text"
+                        name="username"
+                        value={this.state.credentials.username}
+                        onChange={this.handleChange}
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        value={this.state.credentials.password}
+                        onChange={this.handleChange}
+                    />
+                    <button>Log in</button>
+                    </form>
+                </div>
+            );
+        }
     }
 }
 
